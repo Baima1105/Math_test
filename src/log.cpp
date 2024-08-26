@@ -40,7 +40,7 @@ void Log::init(int level, const char* path, const char* suffix, int maxQueueCapa
 		buff_.RetrieveAll();
 		if (fp_) {
 			flush();
-			fclose();
+			fclose(fp_);
 		}
 		fp_ = fopen(fileName, "a");
 		if (fp_ == nullptr) {

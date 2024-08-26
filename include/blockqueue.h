@@ -83,7 +83,7 @@ void BlockQueue<T>::push_front(const T& item)
 	while (deq_.size() >= capacity_) {
 		condProducter_.wait(locker);
 	}
-	deq_.push_back(item);
+	deq_.push_front(item);
 	condConsumer_.notify_one();
 }
 

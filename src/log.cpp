@@ -75,7 +75,7 @@ void Log::write(int level, const char* format, ...)
 	if (toDay_ != t.tm_mday || (lineCount_ && (lineCount_ % MAX_LINES == 0)))
 	{
 		unique_lock<mutex> locker(mtx_);
-		locker.unlock();
+		locker.lock();
 
 		char newFile[LOG_NAME_LEN];
 		char tail[36] = { 0 };
@@ -91,7 +91,7 @@ void Log::write(int level, const char* format, ...)
 			snprintf(newFile, LOG_NAME_LEN - 72, "%s/%s-%d%s", path_, tail, (lineCount_ / MAX_LINES), suffix_);
 		}
 
-		locker.lock();
+		locker.unlock();
 		flush();
 		fclose(fp_);
 		fp_ = fopen(newFile, "a");
@@ -131,6 +131,7 @@ void Log::flush()
 	if (isAsync_) {
 		deque_->flush();
 	}
+	//Ë¢ÐÂÊä³ö»º³åÇø
 	fflush(fp_);
 }
 

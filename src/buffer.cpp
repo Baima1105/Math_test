@@ -99,6 +99,7 @@ size_t Buffer::ReadFd(int fd, int* Errno)
 	char buff[65535];
 	struct iovec iov[2];
 	size_t writeable = WritableBytes();
+	//将fd中内容放到两部分中
 	iov[0].iov_base = BeginWrite();
 	iov[0].iov_len = writeable;
 	iov[1].iov_base = buff;

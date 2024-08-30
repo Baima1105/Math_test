@@ -34,7 +34,7 @@ public:
 	//读取到end位置
 	void RetrieveUntil(const char* end);
 
-	//读取所有数据，读写下标归零
+	//读写下标归零
 	void RetrieveAll();
 	//取出剩余的str
 	std::string RetrieveAllToStr();
@@ -57,6 +57,7 @@ public:
 private:
 	//缓冲区起始位置指针
 	char* Beginptr_();
+	//缓冲区起始位置指针
 	const char* BeginPtr_()const;
 	//(预留空间+可写空间)空间不够就扩容，够就将可读区移到开头
 	void MakeSpace_(size_t len);
